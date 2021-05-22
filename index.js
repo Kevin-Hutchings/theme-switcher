@@ -1,31 +1,42 @@
-// let instructionsNode = document.getElementById('instructions');
-// console.log(instructionsNode)
+let count = 0;
+let countDisplay = document.querySelector('.count');
 
-// let buttons = document.getElementsByTagName('button');
-// console.log(buttons)
+function incrementCount(){
+  count++;
+  countDisplay.innerText = count;
+  // countDisplay.innerText = ++count;
+  console.log(count);
+}
 
-let instructions = document.querySelector('#instructions');
-console.log(instructions)
-instructions.innerText = "Choose a theme:";
-instructions.className = "new-class";
-console.log(instructions.className)
-// instructions.innerHTML = "<p> Choose a theme: </p>"
+function decrementCount(){
+  count--;
+  countDisplay.innerText = count;
+  console.log(count);
+}
 
-let fbButton = document.querySelector('.facebook-button');
-// fbButton.className = "new-class"
-fbButton.classList.add("new-class")
-fbButton.style.color = 'blue' // same as in-line css styling
-console.log(fbButton.classList)
-console.log(fbButton.className)
-console.log(fbButton)
+function resetCount(){
+  count = 0;
+  countDisplay.innerHTML = `<mark> ${count} </mark>`;
+  console.log(count);
+}
 
+function switchTheme(theme){
+  document.querySelector('body').className = theme;
+  document.querySelector('main').className = theme;
 
-// let buttons = document.querySelectorAll('button')
-// console.log(buttons)
-// .forEach can be used
+  const buttons = document.querySelectorAll('button');
+  // console.log(buttons)
 
-// let buttonsByTagName = document.getElementsByTagName('button')
-// console.log(buttonsByTagName)
-// for loops must be used
+  buttons.forEach(button => button.className = theme);
+}
 
+let incrementButton = document.querySelector('#increment-button');
+incrementButton.addEventListener('click', incrementCount);
 
+let decrementButton = document.querySelector('#decrement-button');
+decrementButton.addEventListener('click', decrementCount);
+
+let resetButton = document.querySelector('#reset-button');
+resetButton.addEventListener('click', resetCount);
+
+document.querySelector('#instructions').innerText = 'Choose a Theme:'
